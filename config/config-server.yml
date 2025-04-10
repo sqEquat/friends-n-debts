@@ -11,5 +11,5 @@ spring:
         git:
           uri: https://github.com/sqEquat/friends-n-debts
           search-paths: config
-          default-label: main
+          default-label: master
           clone-on-start: true
