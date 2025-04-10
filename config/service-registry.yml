@@ -1,6 +1,12 @@
 server:
   port: 8761
 
+spring:
+  cloud:
+    discovery:
+      enabled: false
+
+
 eureka:
   client:
     register-with-eureka: false
