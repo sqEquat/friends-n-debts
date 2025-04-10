@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+
+  service-registry:
+    build: ./service-registry
+    container_name: service-registry
+    ports:
+      - "8761:8761"
+    networks:
+      - debt-net
+
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    depends_on:
+      - service-registry
+    networks:
+      - debt-net
+
+  service-user:
+    build: ./service-user
+    container_name: service-user
+    ports:
+      - "8081:8081"
+    depends_on:
+      - service-registry
+      - config-server
+    networks:
+      - debt-net
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service-user
+      - service-registry
+    networks:
+      - debt-net
+
+networks:
+  debt-net:
