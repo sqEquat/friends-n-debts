@@ -6,14 +6,10 @@ spring:
     discovery:
       enabled: false
 
-
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: http://service-registry:8761/eureka
 
   server:
     enable-self-preservation: false
-    peer-eureka-nodes: http://service-registry:8761/eureka
