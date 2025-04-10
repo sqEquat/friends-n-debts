@@ -5,6 +5,8 @@ services:
     container_name: service-registry
     ports:
       - "8761:8761"
+    depends_on:
+      - config-server
     environment:
       - CONFIG_SERVER_URL=http://config-server:8888
     networks:
@@ -15,8 +17,6 @@ services:
     container_name: config-server
     ports:
       - "8888:8888"
-    depends_on:
-      - service-registry
     networks:
       - debt-net
 
@@ -41,6 +41,7 @@ services:
     depends_on:
       - service-user
       - service-registry
+      - config-server
     environment:
       - CONFIG_SERVER_URL=http://config-server:8888
     networks:
