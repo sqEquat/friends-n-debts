@@ -6,7 +6,9 @@ services:
     ports:
       - "8761:8761"
     depends_on:
-      - config-server
+      config-server:
+        condition: service_healthy
+    restart: always
     environment:
       - CONFIG_SERVER_URL=http://config-server:8888
     networks:
@@ -19,6 +21,12 @@ services:
       - "8888:8888"
     networks:
       - debt-net
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8888/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
 
   service-user:
     build: ./service-user
