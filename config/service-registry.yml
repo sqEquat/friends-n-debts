@@ -13,3 +13,4 @@ eureka:
 
   server:
     enable-self-preservation: false
+    peer-eureka-nodes: http://service-registry:8761/eureka

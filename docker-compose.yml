@@ -22,7 +22,7 @@ services:
     networks:
       - debt-net
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8888/actuator/health" ]
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8888/actuator/health"]
       interval: 10s
       timeout: 5s
       retries: 5
